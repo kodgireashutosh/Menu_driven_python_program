@@ -2,6 +2,90 @@
 import os
 #importing getpass for echo back less authentication
 import getpass
+#importing libraries for making the application speech friendly
+import os
+import pyttsx3 as tts
+import speech_recognition as sr
+
+#---------------------------------speech part---------------------------------------------------
+
+wel= "Hello, welcome to our Tech Menu. Please say the option number you would like to choose."
+tts.speak(wel)
+a=  """
+	Press 1: To Check Date
+	Press 2: To Check Calender
+	Press 3: To Add User
+	Press 4: To Configure Web_server
+	Press 5: To configure SSH_Server
+	Press 6: To Start Docker 
+	Press 7: To Exit
+	""" 
+tts.speak(a)  #this allows the device to instruct the user using speech
+
+r = sr.Recognizer()
+mic = sr.Microphone()
+
+def spoken_input():
+	with mic as source:
+		r.adjust_for_ambient_noise(source)
+		audio= r.listen(source)
+	x= r.recognize_google(audio)
+	p= x.lower()
+	print("You said: ",p)
+	
+
+	# converting spoken input into integer form for the program
+	while (p!= 'seven'):
+		if p=='one':
+			ch=1
+			tts.speak('Command is being executed')
+			return ch
+
+		elif p=='two':
+			ch=2
+			tts.speak('Command is being executed')
+			return ch
+
+		elif p=='three':
+			ch=3
+			tts.speak('Command is being executed')
+			return ch
+
+		elif p=='four':
+			ch=4
+			tts.speak('Command is being executed')
+			return ch
+
+		elif p=='five':
+			ch=5
+			tts.speak('Command is being executed')
+			return ch
+
+		elif p=='six':
+			ch=6
+			tts.speak('Command is being executed')
+			return ch
+
+		elif p=='seven':
+			ch=7
+			tts.speak('Command is being executed')
+			ex='Menu closed. Have a lovely day!'
+			print(ex)
+			tts.speak(ex)
+			return ch
+
+		else:
+			tts.speak('number not found in the menu')
+			ch=7
+			ex='Menu closed. Have a lovely day!'
+			print(ex)
+			tts.speak(ex)
+			return ch
+
+
+#--------------------------------program starts here--------------------------------------------------
+
+
 
 print("\n")
 
