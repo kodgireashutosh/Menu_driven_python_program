@@ -9,23 +9,26 @@ import speech_recognition as sr
 
 #---------------------------------speech part---------------------------------------------------
 
-wel= "Hello, welcome to our Tech Menu. Please say the option number you would like to choose."
-tts.speak(wel)
-a=  """
-	Press 1: To Check Date
-	Press 2: To Check Calender
-	Press 3: To Add User
-	Press 4: To Configure Web_server
-	Press 5: To configure SSH_Server
-	Press 6: To Start Docker 
-	Press 7: To Exit
-	""" 
-tts.speak(a)  #this allows the device to instruct the user using speech
-
-r = sr.Recognizer()
-mic = sr.Microphone()
 
 def spoken_input():
+
+	wel= "Hello, welcome to our Tech Menu. Please say the option number you would like to choose."
+	tts.speak(wel)
+	a=  """
+		Press 1: To Check Date
+		Press 2: To Check Calender
+		Press 3: To Add User
+		Press 4: To Configure Web_server
+		Press 5: To configure SSH_Server
+		Press 6: To Start Docker 
+		Press 7: To Exit
+		""" 
+	tts.speak(a)  #this allows the device to instruct the user using speech
+
+	r = sr.Recognizer()
+	mic = sr.Microphone()
+
+
 	with mic as source:
 		r.adjust_for_ambient_noise(source)
 		audio= r.listen(source)
@@ -125,14 +128,14 @@ def Task():
 #Function Asking the Available Options from user to perform that task
 def Asking_option():
 	os.system("tput setaf 2")
-	print("Enter Your Choice:", end="")
-	ch=input()	
+	ch=spoken_input()	
 	print("\n")
 	return ch
 
 #Function with various options and their working for Local System call
 def Options_local(ch):
 		os.system("tput setaf 6")
+		
 		if int(ch)==1:
 			os.system("date")
 
@@ -145,26 +148,26 @@ def Options_local(ch):
 			os.system("useradd {}".format(create_user))
 
 		elif int(ch)==4:
-    			os.system("")
+    		os.system("")
 
 		elif int(ch)==5:
-    			os.system("")
-
+    		os.system("")
+		
 		elif int(ch)==6:
-    			os.system("systemctl start docker")
+    		os.system("systemctl start docker")
 
 		elif int(ch)==7:
 			Credits()
 			exit()
 
 		else:
-    			print("Error! Option Not Supported")
+    		print("Error! Option Not Supported")
 
 
 #Functions for Credits
 def Credits():
 	os.system("tput setaf 11")
-	print("\t\t\t\t\t\t\tMade By Gursimar Singh")
+	print("\t\t\t\t\t\t\tMade By : Gursimar Singh, Janhavi Jain, Kodgire Ashutosh and Akshit")
 	print("\n")
 	os.system("tput setaf 7")
 	
@@ -177,7 +180,7 @@ def Options_remote(ch):
 
 		elif int(ch)==2:
 			os.print("ssh {} cal".format(ip_address))
-
+		
 		elif int(ch)==3:
 			print("Name of the User you want to Add: ", end="")
 			create_user=input()
